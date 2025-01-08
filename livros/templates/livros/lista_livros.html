@@ -1,0 +1,40 @@
+<!-- templates/livros/lista_livros.html -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Leiário{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    <h2>Lista de Livros</h2>
+
+    <form method="GET">
+        <input type="text" name="q" placeholder="Buscar livros..." value="{{ query }}">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <ul>
+        {% for livro in livros %}
+            <li>
+                <strong>{{ livro.titulo }}</strong> por {{ livro.autor }}
+                <a href="{% url 'editar_livro' livro.id %}">Editar</a>
+                <a href="{% url 'excluir_livro' livro.id %}">Excluir</a>
+            </li>
+        {% empty %}
+            <li>Nenhum livro encontrado.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'criar_livro' %}">Adicionar Novo Livro</a>
+    <br><br>
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Sair</button>
+    </form>
+</body>
+</html>

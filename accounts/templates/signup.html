@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Cadastro{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h2>Cadastro</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Cadastrar</button>
+    <p>Já tem uma conta? <a href="{% url 'login' %}">Faça login aqui</a></p>
+    </form>
+</body>
+</html>
+
+
+

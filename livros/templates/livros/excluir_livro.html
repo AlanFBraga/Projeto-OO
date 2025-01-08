@@ -1,0 +1,22 @@
+<!-- templates/livros/excluir_livro.html -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Excluir Livro{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h2>Tem certeza de que deseja excluir o livro: {{ livro.titulo }}?</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Confirmar Excluir</button>
+    </form>
+
+    <a href="{% url 'lista_livros' %}">Voltar para a lista de livros</a>
+</body>
+</html>
